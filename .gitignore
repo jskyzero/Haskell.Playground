@@ -1,0 +1,4 @@
+# for compile Haskell
+*.exe
+*.hi
+*.o
