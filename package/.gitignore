@@ -1,0 +1,3 @@
+# for cabal
+cabal.sandbox.config
+.cabal-sandbox
