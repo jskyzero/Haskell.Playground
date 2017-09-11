@@ -9,3 +9,5 @@
 
 ## Reference
 [Haskell函数程序设计](http://my.ss.sysu.edu.cn/qhy/Courses/FP/index.html)
+
+[Haskell Docs](https://www.haskell.org/documentation)
