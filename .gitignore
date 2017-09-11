@@ -2,3 +2,5 @@
 *.exe
 *.hi
 *.o
+# I always use this name for a temp compiled exe
+1
