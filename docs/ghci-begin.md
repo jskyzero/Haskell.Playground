@@ -12,4 +12,4 @@
 + `let variable_name = variable_value` use `let` in `ghci` to define
 + `--this is comment` to use comment
 + `{- block comment -}` to use comment
-
++ `:type 12` to see type
