@@ -52,5 +52,5 @@ fact n = n * fact(n - 1)
 
 prop_myMax :: Int -> Int -> Bool
 prop_myMax x y = myMax x y >= x && myMax x y >= y
--- Property
--- x > 0 ==>  
+-- prop_myMax :: Int -> Int -> Property
+-- prop_myMax x y = x > 0 ==> myMax x y >= x && myMax x y >= y
