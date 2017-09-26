@@ -9,3 +9,7 @@ import Test.QuickCheck
 4. 确保老师和其他同学能运行你脚本中的程序
 5. 请用附件提交。你可以多次重新提交附件，但是，需要先删除旧的附件，然后再提交。
 ```
+
+```
+Use Main.hs to test your MyFraction.hs
+```

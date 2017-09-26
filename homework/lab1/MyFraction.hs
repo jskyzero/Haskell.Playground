@@ -140,9 +140,9 @@ infix 6 <-*->
 (<-*->) :: Fraction -> Fraction -> Fraction
 (<-*->) (x1, y1) (x2, y2) = rattimes(x1, y1) (x2, y2)
 
-infix 6 <-/->
-(<-/->) :: Fraction -> Fraction -> Fraction
-(<-/->) (x1, y1) (x2, y2) = ratminus(x1, y1) (x2, y2)
+infix 6 </>
+(</>) :: Fraction -> Fraction -> Fraction
+(</>) (x1, y1) (x2, y2) = ratminus(x1, y1) (x2, y2)
 
 infix 4 <==>
 (<==>) :: Fraction -> Fraction -> Bool
