@@ -51,3 +51,10 @@ borrow oldBase person book = (person, book):oldBase
 
 return :: DataBase -> Person -> Book -> DataBase
 return oldBase person book = [item| item <- oldBase, item /= (person, book)]
+
+third (a, b, c) = c
+
+-- some list select draft
+-- [(x, y, z)| x<-[1..100]| y<-[1..100]| z<-[1..100], x^2 + y^2 == z^2]
+-- [(x, y, z)| x<-[1..10], y<-[1..10]]
+-- length [(x,y,z)|(x,y,z)<-[(x,y,z) | y <-[1..10], x<-[1..10], z<-[1..10]], x^2 + y^2 ==z^2]
