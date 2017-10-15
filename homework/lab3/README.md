@@ -31,11 +31,8 @@ printItems customer1
 
 
 Name   Amount  Price  Sum
-
 Apple   2.50   5.99   14.97
-
 Bread   2.00   3.50   7.00
-
 Total  .............. 21.97
 
 
