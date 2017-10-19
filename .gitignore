@@ -4,3 +4,7 @@
 *.o
 # I always use this name for a temp compiled exe
 1
+
+# I write some python in there
+venv
+*.pyc
