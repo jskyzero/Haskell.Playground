@@ -142,3 +142,18 @@ creditcards = [ 4716347184862961,
                 377851536227201,
                 345763240913232
               ]
+
+filter2 :: (a -> Bool) -> [a] -> [a]
+filter2 p = foldr (\x xs -> if p x then x : xs else xs) []
+
+dec2int2 :: [Integer] -> Integer
+dec2int2 = foldl (\ x y -> 10 * x + y) 0
+
+takeWhile2 :: (a -> Bool) -> [a] -> [a]
+takeWhile2 _ [ ] = []
+takeWhile2 p (x : xs) 
+     | p x = x : takeWhile p xs
+     | otherwise  = []
+
+map2 :: (a -> b) -> [a] -> [b]
+map2 f = foldl (\ xs x -> xs ++ [f x]) []
