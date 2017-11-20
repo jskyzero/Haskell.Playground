@@ -1,0 +1,39 @@
+自然数的集合可以这样来定义：
+1. 0是自然数；
+2. 如果n是自然数，那么n'(n的后继)也是自然数；
+3. 所有的自然数都可以用1，2生成。
+利用以上规则可以定义自然数的类型。用Nat表示自然数的类型：
+data Nat = Zero | Succ Nat
+请完成下列任务：
+1. 将Nat定义为Show的实例，使得自然数显示为阿拉伯数字，如，Zero显示为0， Succ Zero显示为1等等。
+2. 定义自然数上的加法：
+add :: Nat -> Nat -> Nat
+例如，add Zero Zero => Zero, add Zero (Succ Zero) => Succ Zero, 这里‘＝>'表示计算结果为。
+3. 列出你做的测试， 如
+zero = Zero
+one = Succ Zero
+two = Succ one
+three = Succ two
+...
+show two
+add two one
+add two two
+
+
+如果刻画算术表达式呢？比如，2，2+3， 2*(3+5), ...
+像自然数的定义一样，仍然可以用有限条规则来刻画算术表达式的集合：
+1. 一个整数是一个表达式；
+2. 如果e1和e2是表达式，那么e1 + e2是一个表达式；
+3. 如果e1和e2是表达式，那么e1 - e2是一个表达式；
+4. 如果e1和e2是表达式，那么e1 * e2是一个表达式；
+所有的表达式（整数和＋，－，＊构成）都可以用规则1-4生成。
+因此，我们可以如下定义表达式的类型Exp:
+data Exp = Lit Integer | Add Exp Exp | Sub Exp Exp | Mul Exp Exp
+例如，2的表示是Lit 2, 2+3的表示是Add (Lit 2) (Lit 3), 2*(3+5)的表示是Mul (Lit 2) (Add (Lit 23) (Lit 5)).
+请完成下列任务：
+1. 将Exp定义为Show的实例，使得Exp的元素显示为我们习惯的式子，如，Lit 2显示为2，  Mul (Lit 2) (Add (Lit 3) (Lit 5))显示为2 * (3 + 5).
+2. 给出下来表达式的Exp的对应表示：2， 3+5， 2+3+5， 2*3*5， 3*(2+4)，并检查其显示是否正确。例如，
+-- 用e表示1+2的表示
+e = Add (Lit 1) (Lit 2)
+-- 在解释器中显示e, 应该看到 1+2或者(1+2)。
+e
