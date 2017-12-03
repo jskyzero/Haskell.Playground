@@ -23,15 +23,15 @@ cal_bmi = do
   let height = read (input) :: Float
   input <- ask "weight"
   let weight = read (input) :: Float
-  let user_bmi = height / weight
+  let user_bmi = weight * weight / height
   if user_bmi < 18.5
   then do
     -- "体重过低"
-    let ans = "\20307\37325\36807\20302"
+    let ans = "体重过低"
     putStrLn ans
   else do
     if user_bmi < 24
     -- "体重正常"
-    then putStrLn "\20307\37325\27491\24120"
+    then putStrLn "体重正常"
     -- "肥胖"
-    else putStrLn "\32933\32982"
+    else putStrLn "肥胖"
