@@ -75,20 +75,27 @@ hangman game
 
 > randomInt :: IO Int
 > randomInt = do
->   num <- randomIO :: IO Int
+>   num <- (randomIO :: IO Int)
 >   return num
+> randomChar :: IO Char
+> randomChar = do 
+>   random_int <- randomInt
+>   let letterCase = mod random_int 2
+>   random_int <- randomInt
+>   let letter     = mod random_int 26
+>   let ans = if letterCase == 1
+>             then letter + ord 'a'
+>             else letter + ord 'A'
+>   return (chr ans)
 
-> randomString :: Int -> String
-> randomString 0 = ""
+
+> randomString :: Int -> IO String
+> randomString 0 = return []
 > randomString length = do
->   let index = randomInt :: IO Int 
->   let index = mod index 26
->   let random = randomInt :: IO Int
->   let random = mod random 2
->   let ans = if random == 0
->             then  (ord 'a') + index
->             else  (ord 'A') + index
->   [chr ans] ++ (randomString (length - 1))
+>   ch <- randomChar
+>   last <- randomString (length - 1)
+>   let ans = [ch] ++ last
+>   return ans
 
 readFile
 readFile :: FilePath -> IO String
