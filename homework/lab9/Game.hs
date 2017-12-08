@@ -40,11 +40,11 @@ prop_compare = (Rock < Rock) == False &&
 data UserHand = ErrorInput | Maybe Hand
       deriving (Show)
 -- trans Char to UserHand
-charToUserHand :: [(Char, Hand)] -> Char -> UserHand
-charToUserHand [] _ = ErrorInput
+charToUserHand :: [(Char, Hand)] -> Char -> IO UserHand
+charToUserHand [] _ = return ErrorInput
 charToUserHand ((c,h):xs) ch
-      | c == (toLower ch) = Maybe h
-      | otherwise = charToUserHand xs c
+      | c == (toLower ch) = return (Maybe h)
+      | otherwise = charToUserHand xs ch
 -- trans table
 trans_table = [('r', Rock), 
                ('s', Scissor),
@@ -66,10 +66,54 @@ compareHand roboot (Maybe user)
   | result == GT = RobootWin
     where result = compare roboot user
 
+-- Scoreboard
+updateScoreboard :: (Int, Int) -> CompareResult -> (Int, Int)
+updateScoreboard (userScore, robootScore) result 
+  | result == UserWin   = (userScore + 1, robootScore)
+  | result == RobootWin = (userScore, robootScore + 1)
+  | result == SameHand  = (userScore, robootScore)
+
+showScoreboard :: (Int, Int) -> String
+showScoreboard (userScore, robootScore) = 
+  "Your Score is " ++ (show userScore) ++ "\n" ++ 
+  "Roboot Score is " ++ (show robootScore) ++ "\n"
+
+isUserWin :: (Int, Int) -> Bool
+isUserWin (userScore, robootScore) = userScore == 3
+
+isRobootWin :: (Int, Int) -> Bool
+isRobootWin (userScore, robootScore) = robootScore == 3
+
+showHand :: String -> String -> String
+showHand people hand = 
+  people ++ " hand is " ++ hand ++ ", "
+
 play :: IO ()
 play = do 
-  putStrLn "HelloWorld!"
+  playRound (0, 0)
 
+
+playRound :: (Int, Int) -> IO ()
+playRound (userScore, robootScore) = 
+  let scoreTable = (userScore, robootScore) in do
+    if isUserWin scoreTable 
+    then putStrLn "Cheers, You Win!"
+    else do
+    if isRobootWin scoreTable 
+    then putStrLn "Haha, Roboot Win!"
+    else do
+    putStr "Please Choose (R)Rock (S)Scissor (P)Paper: "
+    choice <- getChar
+    userHand <- charToUserHand trans_table choice
+    robootHand <- randomIO :: IO Hand
+    putStr $ showHand " your" ((\(Maybe hand) -> show hand) userHand)
+    putStrLn $ showHand "roboot's" (show robootHand)
+    let result = compareHand robootHand userHand
+    let newScoreTable = updateScoreboard scoreTable result
+    (putStr . show) result
+    (putStr . showScoreboard) newScoreTable
+    playRound newScoreTable
+    -- result = compareHand 
 
 return []
 -- 你可以输入check来运行所有的检查
