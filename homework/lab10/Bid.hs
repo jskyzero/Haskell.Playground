@@ -13,6 +13,7 @@ type BidData = [(String, Integer)]
 -- config
 default_separator     = "       "         :: String
 default_filePath      = "bids_201711.txt" :: String
+default_savePath      = "bidResults.txt"  :: String
 default_sucessNumber  = 10                :: Int
 
 
@@ -46,6 +47,6 @@ count :: String -> IO ()
 count filePath = do
   fileData <- readFile filePath
   result <- showResult $ (countData . readData) fileData
-  putStrLn result
+  writeFile default_savePath result
 
 main = count default_filePath
