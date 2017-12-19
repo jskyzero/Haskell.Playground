@@ -1,0 +1,3 @@
+1. 将Maybe, IO, [], (,) a, (->) a定义为Functor的instance;
+2. 将Maybe, IO, [], (,) a, (->) a定义为Applicative的instance;
+3. 将Maybe, IO, [], (,) a, (->) a定义为Monad的instance.

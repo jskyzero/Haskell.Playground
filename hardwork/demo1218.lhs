@@ -62,7 +62,7 @@ instance Functor Maybe where
 
 instance Functor IO where
   fmap :: (a -> b) -> IO a -> IO b
-  fmap f x = 
+  fmap f x = do
     k <- x
     return (f x)
 
@@ -95,6 +95,8 @@ instance Monad IO where
   (>>=) :: IO a -> (a -> IO b) -> IO b
   m >>= f = do 
     x <- m'
+
+    \
     f x
   (>>) :: IO a -> IO b -> IO b
   m1 >> m2 = do
