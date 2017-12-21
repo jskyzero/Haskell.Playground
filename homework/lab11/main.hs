@@ -16,8 +16,76 @@ class Applicative m => Monad (m :: * -> *) where
 
 -}
 
-instance Functor IO where
-  fmap :: (a -> b) -> IO a -> IO b
-  fmap f x = do
-    k <- x
-    return (f x)
+
+-- instance Functor ((->) a) where
+--   fmap = (.)
+
+-- instance Applicative ((->) a) where
+--   pure a = (\_ -> a)
+--   f <*> g = \x -> f x (g x)
+
+-- instance Monad ((->) a) where
+--   f >>= g = \x -> g (f x)
+
+
+
+-- instance Functor ((,) a) where
+--   fmap f ((,) a) = (,) (f a)
+
+-- instance Applicative ((,) a) where
+--   pure a = ((,) a)
+--   ((,) f) <*> ((,) a) = ((,) (f a))
+
+-- instance Monad ((,) a) where
+--   ((,) a) >>= f = f a
+
+
+
+-- instance Functor [] where
+--   fmap f [] = []
+--   fmap f (x:xs) = (f x) ++ (fmap f xs)
+
+-- instance Applicative [] where
+--   pure a = [a]
+--   [] <*> _ = []
+--   (f:fs) <*> a = [f x | x<-a ] ++ (fs <*> a)
+
+-- instance Monad [] where
+--   [] >>= _ = []
+--   (a:as) >>= f = ( f a ) ++ (as >>= f)
+
+
+
+-- instance Functor Maybe  where
+--   fmap f (Just a) = Just (f a)
+--   fmap f Nothing = Nothing
+
+-- instance Applicative Maybe where
+--   pure x = Just x
+--   Nothing <*> _ = Nothing
+--   _ <*> Nothing = Nothing
+--   (Just f) <*> (Just a) = Just (f a)
+
+-- instance Monad Maybe where
+--   Nothing >>= _ = Nothing
+--   (Just a) >>= f = f a
+
+
+
+-- instance Functor IO where
+--   fmap :: (a -> b) -> IO a -> IO b
+--   fmap f x = do
+--     k <- x
+--     return (f x)
+
+-- instance Applicative IO where
+--   pure = return
+--   a <*> b = do
+--     f <- a 
+--     x <- b
+--     return (f x)
+
+-- instance Monad IO where
+--   a >>= b = do
+--     x <- a
+--     f x

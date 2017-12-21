@@ -95,8 +95,6 @@ instance Monad IO where
   (>>=) :: IO a -> (a -> IO b) -> IO b
   m >>= f = do 
     x <- m'
-
-    \
     f x
   (>>) :: IO a -> IO b -> IO b
   m1 >> m2 = do
