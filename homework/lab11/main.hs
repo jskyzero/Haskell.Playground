@@ -21,7 +21,7 @@ class Applicative m => Monad (m :: * -> *) where
 --   fmap = (.)
 
 -- instance Applicative ((->) a) where
---   pure a = (\_ -> a)
+--   pure b = (\_ -> b)
 --   f <*> g = \x -> f x (g x)
 
 -- instance Monad ((->) a) where
@@ -33,7 +33,7 @@ class Applicative m => Monad (m :: * -> *) where
 --   fmap f ((,) a) = (,) (f a)
 
 -- instance Applicative ((,) a) where
---   pure a = ((,) a)
+--   pure b = ((,) a b)
 --   ((,) f) <*> ((,) a) = ((,) (f a))
 
 -- instance Monad ((,) a) where
